@@ -9,3 +9,9 @@ phases:
       - cd src
       - npm install
       - echo finished installing node modules
+  build:
+    commands:
+        - echo running build scripts
+        - cd src
+        - npm run compile
+        - npm run build-and-zip
