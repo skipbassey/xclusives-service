@@ -1,3 +1,9 @@
+# dist folder
+dist/
+
+# Terraform Modules
+.terraform/
+
 # Logs
 logs
 *.log

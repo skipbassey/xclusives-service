@@ -1,0 +1,11 @@
+version: 0.2
+
+phases:
+  install: 
+    runtime-versions:
+      nodejs: 10
+    commands: 
+      - echo installing node modules
+      - cd src
+      - npm install
+      - echo finished installing node modules
