@@ -34,7 +34,7 @@
     "plan": "cd ../terraform && terraform plan",
     "apply": "cd ../terraform && terraform apply",
     "destroy": "cd ../terraform && terraform destroy",
-    "installs": "npm i -g typescript && npm i -g del-cli && npm i -g bestzip && npm i -g move-file-cli && npm i -g mocha && npm i -g aws-sdk && npm i -g aws-lambda && npm install",
+    "installs": "npm i -g typescript && npm i -g cpx && npm i -g del-cli && npm i -g bestzip && npm i -g move-file-cli && npm i -g mocha && npm i -g aws-sdk && npm i -g aws-lambda && npm install",
     "compile": "npm run copy-package-json && tsc",
     "deploy": "sam deploy -t ../template.dev.yaml --stack-name blokparty",
     "delete-stack": "aws cloudformation delete-stack --stack-name blokparty"
