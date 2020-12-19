@@ -1,0 +1,165 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  xclusives-service
+
+  Sample SAM Template for xclusives-service
+  
+Globals:
+  Function:
+    Timeout: 3
+Parameters:
+  Stage:
+    Type: String
+    Default: Dev 
+
+Resources:
+  ApiDeployment:
+    Type: AWS::Serverless::Api
+    Properties:
+      StageName: dev
+      MethodSettings: 
+      Cors:
+          AllowMethods: "'POST, GET, PUT'"
+          AllowHeaders: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
+          AllowOrigin: "'*'"
+      TracingEnabled: true
+      Auth:
+        DefaultAuthorizer: MyCognitoAuth
+        Authorizers:
+          MyCognitoAuth:
+            UserPoolArn: arn:aws:cognito-idp:us-east-1:695738586291:userpool/us-east-1_ERp5clRrh
+  CustomAuthorizer:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: dist
+      Handler: functions/customAuthorizer.handler
+      Runtime: nodejs12.x
+  CreateBusiness:
+    Type: AWS::Serverless::Function
+    Properties:
+      AutoPublishAlias: dev
+      CodeUri: dist
+      Handler: functions/createBusiness.handler
+      Runtime: nodejs12.x
+      Events:
+        CreateBusinessApi:
+          Type: Api 
+          Properties:
+            RestApiId:
+              Ref: ApiDeployment
+            Path: /createbusiness
+            Method: post
+      Role: arn:aws:iam::695738586291:role/service-role/MyLambdaRole
+      Layers: [arn:aws:lambda:us-east-1:695738586291:layer:data-api-client-layer:1, arn:aws:lambda:us-east-1:695738586291:layer:moment-layer:3]
+  UpdateBusiness:
+    Type: AWS::Serverless::Function
+    Properties:
+      AutoPublishAlias: dev
+      CodeUri: dist
+      Handler: functions/updateBusiness.handler
+      Environment:
+          Variables:
+            businessTable: blokparty_db.Business
+      Runtime: nodejs12.x
+      Events:
+        UpdateBusinessApi:
+          Type: Api
+          Properties:
+            RestApiId:
+              Ref: ApiDeployment
+            Path: /updatebusiness
+            Method: put
+      Role: arn:aws:iam::695738586291:role/service-role/MyLambdaRole
+      Layers: [arn:aws:lambda:us-east-1:695738586291:layer:data-api-client-layer:1, arn:aws:lambda:us-east-1:695738586291:layer:moment-layer:3]
+
+  Get:
+    Type: AWS::Serverless::Function
+    Properties:
+        AutoPublishAlias: dev
+        CodeUri: dist
+        Handler: functions/get.handler
+        Runtime: nodejs12.x
+        Environment:
+          Variables:
+            businessTable: blokparty_db.Business
+            businessTypesTable: blokparty_db.Business_Types
+            rateTable: blokparty_db.Rate
+            commentTable: blokparty_db.Comment
+        Events:
+          GetApi:
+            Type: Api
+            Properties:
+              RestApiId: 
+                Ref: ApiDeployment
+              Path: /get
+              Method: get  
+        Role: arn:aws:iam::695738586291:role/service-role/MyLambdaRole
+        Layers: [arn:aws:lambda:us-east-1:695738586291:layer:data-api-client-layer:1, arn:aws:lambda:us-east-1:695738586291:layer:moment-layer:3]
+  
+  GetPhoto:
+    Type: AWS::Serverless::Function
+    Properties:
+        AutoPublishAlias: dev
+        CodeUri: dist
+        Handler: functions/getPhoto.handler
+        Runtime: nodejs12.x
+        MemorySize: 1024
+        Timeout: 7
+        Environment:
+          Variables:
+            secretId: s3User
+            bucket: amplify-block-party-default-232819-deployment
+        Events:
+          GetPhotoApi:
+            Type: Api
+            Properties:
+              RestApiId: 
+                Ref: ApiDeployment
+              Path: /getphoto
+              Method: get
+        Role: arn:aws:iam::695738586291:role/service-role/MyLambdaRole
+        Layers: [arn:aws:lambda:us-east-1:695738586291:layer:data-api-client-layer:1, arn:aws:lambda:us-east-1:695738586291:layer:moment-layer:3]
+
+  UploadPhoto:
+    Type: AWS::Serverless::Function
+    Properties:
+      AutoPublishAlias: dev
+      CodeUri: dist
+      Handler: functions/uploadPhoto.handler
+      Runtime: nodejs12.x
+      Environment:
+          Variables:
+            bucket: amplify-block-party-default-232819-deployment
+      Events:
+        UploadPhotoApi:
+          Type: Api 
+          Properties:
+            RestApiId: 
+              Ref: ApiDeployment
+            Path: /uploadphoto
+            Method: post
+      Role: arn:aws:iam::695738586291:role/service-role/MyLambdaRole
+      Layers: [arn:aws:lambda:us-east-1:695738586291:layer:data-api-client-layer:1, arn:aws:lambda:us-east-1:695738586291:layer:moment-layer:3]
+
+  AddComment:
+      Type: AWS::Serverless::Function
+      Properties:
+        AutoPublishAlias: dev
+        CodeUri: dist
+        Handler: functions/addComment.handler
+        Runtime: nodejs12.x
+        Environment:
+          Variables:
+            commentTable: blokparty_db.Comment
+        Events:
+          AddCommentApi:
+            Type: Api
+            Properties:
+              Path: /addcomment
+              Method: post
+              RestApiId: 
+                Ref: ApiDeployment
+        Role: arn:aws:iam::695738586291:role/service-role/MyLambdaRole
+        Layers: [arn:aws:lambda:us-east-1:695738586291:layer:data-api-client-layer:1, arn:aws:lambda:us-east-1:695738586291:layer:moment-layer:3]
+
