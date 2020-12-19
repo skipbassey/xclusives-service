@@ -24,7 +24,6 @@
     "sam-local-get": "cd .. && sam local invoke Get --event /events/get.json",
     "sam-local-update": "cd .. && sam local invoke UpdateBusiness --event events/update.json",
     "sam-local-get-photo": "cd .. && sam local invoke GetPhoto --event events/getPhoto.json",
-    "sam-deploy": "cd .. && sam deploy --guided",
     "clean-dist-folder": "del-cli -f ../dist/** && npm run prebuild",
     "npm-prod": "cd ./../dist/ && npm install --only && del-cli -f ../dist/package-lock.json",
     "prod-build": "npm run clean-dist-folder && cpx \"./package.json\" ../dist/ && tsc && npm run npm-prod",
@@ -40,7 +39,7 @@
     "terraform-plan": "cd terraform && terraform plan",
     "terraform-apply": "cd terraform && terraform apply -auto-approve",
     "terraform-destroy": "cd terraform && terraform destroy",
-    "deploy": "sam deploy -t ../template.dev.yaml --stack-name blokparty",
+    "sam-deploy": "sam deploy -t ../config/template.dev.yaml --stack-name blokparty",
     "delete-stack": "aws cloudformation delete-stack --stack-name blokparty"
   },
   "devDependencies": {
