@@ -19,6 +19,6 @@ phases:
       - echo running terraform scripts
       - npm run terraform-init
   terraform-apply:
-    commands
+    commands:
       - echo running terraform apply
       - npm run terraform-apply
