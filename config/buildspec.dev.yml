@@ -14,11 +14,8 @@ phases:
         - echo running build scripts
         - npm run compile
         - npm run build-and-zip
-  terraform-init:
+        - npm run terraform-init
+  post_build:
     commands:
       - echo running terraform scripts
-      - npm run terraform-init
-  terraform-apply:
-    commands:
-      - echo running terraform apply
       - npm run terraform-apply
