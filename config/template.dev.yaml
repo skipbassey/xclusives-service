@@ -33,14 +33,14 @@ Resources:
     Type: AWS::Serverless::Function
     Properties:
       CodeUri: dist
-      Handler: functions/customAuthorizer.handler
+      Handler: lambdas/customAuthorizer.handler
       Runtime: nodejs12.x
   CreateBusiness:
     Type: AWS::Serverless::Function
     Properties:
       AutoPublishAlias: dev
       CodeUri: dist
-      Handler: functions/createBusiness.handler
+      Handler: lambdas/createBusiness.handler
       Runtime: nodejs12.x
       Events:
         CreateBusinessApi:
@@ -57,7 +57,7 @@ Resources:
     Properties:
       AutoPublishAlias: dev
       CodeUri: dist
-      Handler: functions/updateBusiness.handler
+      Handler: lambdas/updateBusiness.handler
       Environment:
           Variables:
             businessTable: blokparty_db.Business
@@ -78,7 +78,7 @@ Resources:
     Properties:
         AutoPublishAlias: dev
         CodeUri: dist
-        Handler: functions/get.handler
+        Handler: lambdas/get.handler
         Runtime: nodejs12.x
         Environment:
           Variables:
@@ -102,7 +102,7 @@ Resources:
     Properties:
         AutoPublishAlias: dev
         CodeUri: dist
-        Handler: functions/getPhoto.handler
+        Handler: lambdas/getPhoto.handler
         Runtime: nodejs12.x
         MemorySize: 1024
         Timeout: 7
@@ -126,7 +126,7 @@ Resources:
     Properties:
       AutoPublishAlias: dev
       CodeUri: dist
-      Handler: functions/uploadPhoto.handler
+      Handler: lambdas/uploadPhoto.handler
       Runtime: nodejs12.x
       Environment:
           Variables:
@@ -147,7 +147,7 @@ Resources:
       Properties:
         AutoPublishAlias: dev
         CodeUri: dist
-        Handler: functions/addComment.handler
+        Handler: lambdas/addComment.handler
         Runtime: nodejs12.x
         Environment:
           Variables:
