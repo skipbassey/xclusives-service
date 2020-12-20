@@ -15,8 +15,6 @@ phases:
       - unzip terraform*.zip
       - sudo mv terraform /usr/local/bin
       - terraform version
-  pre_build:
-    runtime-versions:
   build:
     commands:
         - echo running build scripts
