@@ -21,7 +21,3 @@ phases:
         - npm run compile
         - npm run build-and-zip
         # - npm run terraform-init
-  # post_build:
-  #   commands:
-  #     - echo running deploy
-  #     - npm run sam-deploy
