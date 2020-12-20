@@ -32,7 +32,7 @@ Resources:
   CustomAuthorizer:
     Type: AWS::Serverless::Function
     Properties:
-      CodeUri: dist
+      CodeUri: ../dist
       Handler: lambdas/customAuthorizer.handler
       Runtime: nodejs12.x
   CreateBusiness:

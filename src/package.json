@@ -40,7 +40,7 @@
     "terraform-apply": "cd terraform && terraform apply -auto-approve",
     "terraform-destroy": "cd terraform && terraform destroy",
     "sam-deploy": "sam deploy -t ../config/template.dev.yaml --stack-name blokparty",
-    "delete-stack": "aws cloudformation delete-stack --stack-name blokparty"
+    "delete-stack": "aws cloudformation delete-stack --stack-name xlcusives-service"
   },
   "devDependencies": {
     "@types/aws-lambda": "^8.10.61",
