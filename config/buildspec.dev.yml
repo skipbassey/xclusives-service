@@ -9,13 +9,21 @@ phases:
       - cd src
       - npm run installs
       - echo finished installing node modules
+      - echo downloading terraform
+      - wget https://releases.hashicorp.com/terraform/0.12.24/terraform_0.12.24_linux_amd64.zip
+      - sudo apt-get install zip -y
+      - unzip terraform*.zip
+      - sudo mv terraform /usr/local/bin
+      - terraform version
+  pre_build:
+    runtime-versions:
   build:
     commands:
         - echo running build scripts
         - npm run compile
         - npm run build-and-zip
         # - npm run terraform-init
-  post_build:
-    commands:
-      - echo running deploy
-      - npm run sam-deploy
+  # post_build:
+  #   commands:
+  #     - echo running deploy
+  #     - npm run sam-deploy
