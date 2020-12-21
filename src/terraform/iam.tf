@@ -1,5 +1,5 @@
 resource "aws_iam_role" "iam_for_xclusives_lambda" {
-  name = "iam_for_lambda"
+  name = "iam_for_exclusives_lambda"
 
   assume_role_policy = <<EOF
 {
