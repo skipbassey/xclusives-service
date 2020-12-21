@@ -11,15 +11,14 @@ phases:
       - echo finished installing node modules
       - echo downloading terraform
       - wget https://releases.hashicorp.com/terraform/0.12.24/terraform_0.12.24_linux_arm.zip
-      # - sudo apt-get install zip -y
       - yum install zip -y
       - unzip terraform*.zip -d /usr/local/bin
       - export PATH=$PATH:/usr/local/bin
-      # - mv terraform /usr/local/bin
-      # - terraform version
   build:
     commands:
         - echo running build scripts
         - npm run compile
         - npm run build-and-zip
         - npm run terraform-init
+        - npm run terraform-plan
+        - npm run terraform-apply -auto-approve
