@@ -5,15 +5,16 @@ phases:
     runtime-versions:
       nodejs: 10
     commands: 
-      - echo installing node modules
-      - cd src
-      - npm run installs
-      - echo finished installing node modules
+      # - echo installing node modules
+      # - cd src
+      # - npm run installs
+      # - echo finished installing node modules
       - echo downloading terraform
       - wget https://releases.hashicorp.com/terraform/0.12.24/terraform_0.12.24_linux_amd64.zip
       # - sudo apt-get install zip -y
       - yum install zip -y
       - unzip terraform*.zip -d /usr/local/bin
+      - export PATH=$PATH:/usr/local/bin/terraform
       # - mv terraform /usr/local/bin
       - terraform version
   build:
