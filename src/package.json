@@ -37,6 +37,7 @@
     "compile": "npm run copy-package-json && tsc",
     "terraform-init": "cd terraform && terraform init",
     "terraform-plan": "cd terraform && terraform vailidate && terraform plan",
+    "terraform-validate": "cd terraform && terraform validate",
     "terraform-apply": "cd terraform && terraform apply -auto-approve",
     "terraform-destroy": "cd terraform && terraform destroy",
     "sam-deploy": "sam deploy -t ../config/template.dev.yaml --stack-name blokparty",

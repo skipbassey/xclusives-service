@@ -20,5 +20,6 @@ phases:
         - npm run compile
         - npm run build-and-zip
         - npm run terraform-init
+        - npm run terraform-validate
         - npm run terraform-plan
         - npm run terraform-apply -auto-approve
