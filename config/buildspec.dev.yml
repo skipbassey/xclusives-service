@@ -14,7 +14,7 @@ phases:
       # - sudo apt-get install zip -y
       - yum install zip -y
       - unzip terraform*.zip -d /usr/local/bin
-      - export PATH=$PATH:/usr/local/bin/terraform
+      - export PATH=$PATH:/usr/local/bin
       # - mv terraform /usr/local/bin
       # - terraform version
   build:
