@@ -36,7 +36,7 @@
     "installs": "npm i -g typescript && npm i -g cpx && npm i -g del-cli && npm i -g bestzip && npm i -g move-file-cli && npm i -g mocha && npm i -g aws-sdk && npm i -g aws-lambda && npm install",
     "compile": "npm run copy-package-json && tsc",
     "terraform-init": "cd terraform && terraform init",
-    "terraform-plan": "cd terraform && terraform plan",
+    "terraform-plan": "cd terraform && terraform vailidate && terraform plan",
     "terraform-apply": "cd terraform && terraform apply -auto-approve",
     "terraform-destroy": "cd terraform && terraform destroy",
     "sam-deploy": "sam deploy -t ../config/template.dev.yaml --stack-name blokparty",
