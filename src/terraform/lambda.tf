@@ -10,7 +10,7 @@ locals {
 
 resource "aws_lambda_function" "get_lambda" {
   function_name = local.lambda_function_name
-  role          = aws_iam_role.iam_for_xclusives_lambda.arn
+  role          = local.iam_for_xclusives_lambda
   handler       = local.lambda_handler
   s3_bucket     = aws_s3_bucket.lambda_bucket.id
   s3_key        = aws_s3_bucket_object.lambda_upload_zip.key
