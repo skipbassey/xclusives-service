@@ -34,36 +34,35 @@ module.exports.handler = async (event, context, callback): Promise<GetResponse> 
             secretAccessKey: credentials.secret
         })
 
-        var id = event["queryStringParameters"]['id'];
-        var type = event['queryStringParameters']['type'];
-
+        let id = event["queryStringParameters"]['id'];
+        let type = event['queryStringParameters']['type'];
+        let folder = event['queryStringParameters']['folder'];
         switch (type) {
             case "business":
-                bucket += "/business";
+                bucket += "/business/" + folder;
                 break;
             case "category":
                 bucket += "/category";
                 break;
             default:
-                bucket += "/business";
+                bucket += "/business/" + folder;
+
         }
 
         var params = {
-            Key: id,
-            Bucket: bucket
+            Bucket: bucket,
+            Key: id
         };
 
+        console.log(params);
+
         let response = await new Promise((resolve, reject) => {
-            s3.getObject(params, done)
+            // s3.listObjects(params, done) 
+            s3.getObject(params, done) 
+
         })
-
-        console.log(response);
-
-        return new GetResponse(200, "success", headers)
-
-        // return await new Promise((resolve, reject) => {
-        //     s3.getObject(params, done)
-        // })
+        
+        return new GetResponse(200, JSON.stringify(response), headers)
 
     } catch (error) {
         console.log(error)

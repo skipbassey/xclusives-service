@@ -22,22 +22,23 @@ module.exports.handler = async (event, context, callback): Promise<CreateRespons
                 "Access-Control-Allow-Credentials": false
             }
         });
-        
-        if(event.body == null) {
+
+        if (event.body == null) {
             return new CreateResponse(400, "Body does not exist", headers);
         }
         else {
             let body = JSON.parse(event.body);
-
             let params = {
                 Body: body.base64,
-                Bucket: bucket,
-                Key: body.folder + "/" + body.id,
+                Bucket: bucket + "/business/" + body.folder,
+                Key: body.id,
             };
-
-            return await new Promise((resolve, reject) => {
+            console.log(params)
+            let response = await new Promise((resolve, reject) => {
                 s3.putObject(params, done)
             })
+
+            return new CreateResponse(200, JSON.stringify(response), headers)
 
         }
 

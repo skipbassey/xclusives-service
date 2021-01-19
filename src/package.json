@@ -9,9 +9,10 @@
   "dependencies": {
     "@types/mocha": "^8.0.3",
     "@types/zipcodes": "^8.0.0",
-    "aws-amplify": "^3.3.2",
+    "aws-amplify": "^3.3.14",
     "aws-s3": "^2.0.5",
-    "axios": "^0.18.0"
+    "axios": "^0.21.1",
+    "multer": "^1.4.2"
   },
   "scripts": {
     "test": "mocha tests/unit/",
@@ -23,7 +24,7 @@
     "sam-local-create": "cd .. && sam local invoke CreateBusiness --event events/create.json",
     "sam-local-get": "cd .. && sam local invoke Get --event /events/get.json",
     "sam-local-update": "cd .. && sam local invoke UpdateBusiness --event events/update.json",
-    "sam-local-get-photo": "cd .. && sam local invoke GetPhoto --event events/getPhoto.json",
+    "sam-local-get-photo": "cd .. && sam local invoke GetPhoto --event events/getPhoto.json -t ./config/template.dev.yaml",
     "clean-dist-folder": "del-cli -f ../dist/** && npm run prebuild",
     "npm-prod": "cd ./../dist/ && npm install --only && del-cli -f ../dist/package-lock.json",
     "prod-build": "npm run clean-dist-folder && cpx \"./package.json\" ../dist/ && tsc && npm run npm-prod",

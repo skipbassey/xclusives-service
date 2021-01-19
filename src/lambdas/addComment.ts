@@ -50,7 +50,7 @@ export function createQuery(body: any): string {
     let dateSubmitted = moment();
 
     let sql = " insert into " + commentTable + " (BusinessId, Comment, User, Rate, DateSubmitted) values " +
-    "(" + body.id + ", " + "'" + body.review + "'" + ", " + "'" + body.user + "'" + ", "
+    "(" + body.id + ", " + "'" + body.comment + "'" + ", " + "'" + body.user + "'" + ", "
      + body.rate + ", " + "'" + dateSubmitted.format("X") + "'" + ")";
 
      console.log("SQL: " + sql);

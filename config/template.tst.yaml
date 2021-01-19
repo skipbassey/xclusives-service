@@ -11,13 +11,13 @@ Globals:
 Parameters:
   Stage:
     Type: String
-    Default: Dev 
+    Default: Test 
 
 Resources:
   ApiDeployment:
     Type: AWS::Serverless::Api
     Properties:
-      StageName: dev
+      StageName: test
       MethodSettings: 
       Cors:
           AllowMethods: "'POST, GET, PUT'"
@@ -38,7 +38,7 @@ Resources:
   CreateBusiness:
     Type: AWS::Serverless::Function
     Properties:
-      AutoPublishAlias: dev
+      AutoPublishAlias: tst
       CodeUri: ../dist
       Handler: lambdas/createBusiness.handler
       Runtime: nodejs12.x
@@ -55,7 +55,7 @@ Resources:
   UpdateBusiness:
     Type: AWS::Serverless::Function
     Properties:
-      AutoPublishAlias: dev
+      AutoPublishAlias: tst
       CodeUri: ../dist
       Handler: lambdas/updateBusiness.handler
       Environment:
@@ -76,7 +76,7 @@ Resources:
   Get:
     Type: AWS::Serverless::Function
     Properties:
-        AutoPublishAlias: dev
+        AutoPublishAlias: tst
         CodeUri: ../dist
         Handler: lambdas/get.handler
         Runtime: nodejs12.x
@@ -100,7 +100,7 @@ Resources:
   GetPhoto:
     Type: AWS::Serverless::Function
     Properties:
-        AutoPublishAlias: dev
+        AutoPublishAlias: tst
         CodeUri: ../dist
         Handler: lambdas/getPhoto.handler
         Runtime: nodejs12.x
@@ -124,7 +124,7 @@ Resources:
   UploadPhoto:
     Type: AWS::Serverless::Function
     Properties:
-      AutoPublishAlias: dev
+      AutoPublishAlias: tst
       CodeUri: ../dist
       Handler: lambdas/updatePhoto.handler
       Runtime: nodejs12.x
@@ -147,7 +147,7 @@ Resources:
   AddComment:
       Type: AWS::Serverless::Function
       Properties:
-        AutoPublishAlias: dev
+        AutoPublishAlias: tst
         CodeUri: ../dist
         Handler: lambdas/addComment.handler
         Runtime: nodejs12.x
