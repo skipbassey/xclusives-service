@@ -43,11 +43,11 @@ export function createQuery(body): any {
     let dateCreated = moment();
     let dateUpdated = moment();
 
-    let sql = "insert into " + table  + " (Name, Owner, OwnerEmail, Description, PictureName, Presence," +
+    let sql = "insert into " + table  + " (Name, Owner, OwnerEmail, Description, ImageCount, Presence," +
     "Verified, Accepted, Active, Type, DateCreated, DateUpdated, Street, City, State, Zipcode, " +
     "Website, Twitter, Instagram, Facebook) " +
-    "values ( " + "'" + body.name + "'" + ", " + "'" + body.ownerName + "'" + ", " + "'" + body.ownerEmail + "'" +
-    ", " + "'" + body.description + "'" + ", " + "'" + body.pictureName + "'" + ", " +
+    "values ( " + "'" + body.name + "'" + ", " + "'" + body.owner + "'" + ", " + "'" + body.ownerEmail + "'" +
+    ", " + "'" + body.description + "'" + ", " + "'" + body.imageCount + "'" + ", " +
     "'" + body.presence + "'" + ", " + null + ", " + null +  ", " +
     null + ", " + "'" + body.type + "'" +  ", " +  "'" + dateCreated.format('X') + "'" +  ", " +
     "'" + dateUpdated.format('X') + "'" + ", " + "'" + body.street + "'" + ", " + "'" + body.city + "'" +  ", " +
